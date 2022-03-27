@@ -12,6 +12,12 @@ app.get('*', (req, res) => {
 
 
 
+app.use((err, req, res, next) => {
+    console.log(err)
+    res.status(500).json({ message: 'Server Error Occurred!' });
+})
+
+
 // const uri = 'mongodb+srv://admin:pass123@shoppingcart.8ipvj.mongodb.net/test';
 const uri = 'mongodb://localhost:27017/attendance-db';
 connectDB(uri)

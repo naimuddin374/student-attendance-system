@@ -16,8 +16,16 @@ const UserSchema = new Schema({
         trim: true,
         require: true
     },
-    roles: [String],
-    accountStatus: String
+    roles: {
+        type: [String],
+        require: true,
+        default: ['STUDENT']
+    },
+    accountStatus: {
+        type: String,
+        enum: ['PENDING', 'ACTIVE', 'REJECTED'],
+        default: 'PENDING'
+    }
 }, { timestamps: true })
 const User = model('User', UserSchema);
 module.exports = User;
