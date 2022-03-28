@@ -5,6 +5,12 @@ const error = require('../util/error')
 
 
 
+
+/**
+ * 
+ * @param {{name: string, email: string, password: string}} object 
+ * @returns {user}
+ */
 const register = async ({ name, email, password }) => {
     let user = await userService.findUserByProperty('email', email);
     if (user) throw error('User already exist!', 400);

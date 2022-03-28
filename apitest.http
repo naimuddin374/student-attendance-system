@@ -1,0 +1,24 @@
+# Root Endpoint 
+GET http://localhost:4000
+
+###
+# User Register 
+POST http://localhost:4000/api/v1/auth/register
+Content-Type: application/json
+
+{
+    "name": "Mr. Jon",
+    "email": "jon@gmail.com",
+    "password":"pass123"
+}
+
+
+###
+# User Login
+POST http://localhost:4000/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "email": "jon@gmail.com",
+    "password":"pass123"
+}

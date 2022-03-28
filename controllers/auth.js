@@ -6,7 +6,6 @@ const register = async (req, res, next) => {
     if (!name || !email || !password) {
         return res.status(400).json({ message: 'Validation Failed!' })
     }
-
     try {
         const result = await authService.register({ name, email, password });
         return res.status(201).json({ message: 'Registration Successful!', result })
