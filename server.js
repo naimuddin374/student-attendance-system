@@ -1,25 +1,26 @@
 const express = require('express');
+const morgan = require('morgan');
 const connectDB = require('./db');
+
+
 const app = express();
+app.use(morgan('dev'));
+const routers = require('./routes');
 
-
-app.use(express.json())
-
-
-app.get('*', (req, res) => {
-    res.send(`Welcome to app`);
-})
+app.use(express.json());
+app.use(routers);
 
 
 
 app.use((err, req, res, next) => {
     console.log(err)
-    res.status(500).json({ message: 'Server Error Occurred!' });
+    const status = err.status ? err.status : 500;
+    const message = err.message ? err.message : 'Server Error Occurred!';
+    res.status(status).json({ message });
 })
 
 
-// const uri = 'mongodb+srv://admin:pass123@shoppingcart.8ipvj.mongodb.net/test';
-const uri = 'mongodb://localhost:27017/attendance-db';
+const uri = 'mongodb://0.0.0.0:27017/attendance-db';
 connectDB(uri)
     .then(() => {
         console.log('Database Connection established!')
