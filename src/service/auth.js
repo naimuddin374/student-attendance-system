@@ -11,14 +11,14 @@ const error = require('../util/error')
  * @param {{name: string, email: string, password: string}} object 
  * @returns {user}
  */
-const register = async ({ name, email, password }) => {
+const register = async ({ name, email, password, roles, accountStatus }) => {
     let user = await userService.findUserByProperty('email', email);
     if (user) throw error('User already exist!', 400);
 
     const slot = await bcrypt.genSalt(11)
     const hash = await bcrypt.hash(password, slot);
 
-    return userService.createNewUser({ name, email, password: hash });
+    return userService.createNewUser({ name, email, password: hash, roles, accountStatus });
 }
 
 

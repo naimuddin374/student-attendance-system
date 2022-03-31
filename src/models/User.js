@@ -14,7 +14,8 @@ const UserSchema = new Schema({
     password: {
         type: String,
         trim: true,
-        require: true
+        require: true,
+        minLength: [6, 'password to short']
     },
     roles: {
         type: [String],
