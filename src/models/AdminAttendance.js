@@ -8,8 +8,13 @@ const AdminAttendanceSchema = new Schema({
     },
     timeLimit: {
         type: Number,
-        require: true
+        default: 1,
     },
+    status: {
+        type: String,
+        enum: ['RUNNING', 'COMPLETED'],
+        default: 'RUNNING'
+    }
 }, { timestamps: true })
 const AdminAttendance = model('AdminAttendance', AdminAttendanceSchema);
 module.exports = AdminAttendance;
